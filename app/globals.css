@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  font-size: 18px;
+}
+
+body {
+  background: #0b0f14;
+  color: #f7f9fb;
+  line-height: 1.75;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+*::selection {
+  background: #67e8f9;
+  color: #071014;
+}
+
+*::-webkit-scrollbar {
+  width: 9px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #0b0f14;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #3f4853;
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #5d6976;
+}
+
+/* Brighter supporting text while preserving the dark visual language. */
+@layer utilities {
+  .text-paper-muted {
+    color: #bcc6d0 !important;
+  }
+
+  .text-paper-dim {
+    color: #929eaa !important;
+  }
+
+  .border-ink-border,
+  .border-ink-borderSoft {
+    border-color: #343d47 !important;
+  }
+}
+
+/* Reveal animation */
+.reveal-off {
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(3px);
+}
+
+.reveal-on {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.8s ease;
+}
+
+/* Ambient background lighting */
+.ambient {
+  pointer-events: none;
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(90px);
+  opacity: 0.22;
+  animation: float 10s ease-in-out infinite;
+}
+
+.ambient-one {
+  right: 5%;
+  top: 12%;
+  height: 380px;
+  width: 380px;
+  background: #4f46e5;
+}
+
+.ambient-two {
+  left: 12%;
+  bottom: 4%;
+  height: 260px;
+  width: 260px;
+  background: #0891b2;
+  animation-delay: -4s;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -25px, 0) scale(1.06);
+  }
+}
+
+@media (max-width: 640px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal-off {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .reveal-on {
+    transition: none;
+  }
+
+  .ambient {
+    animation: none;
+  }
+}

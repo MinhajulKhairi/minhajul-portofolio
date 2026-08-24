@@ -1,0 +1,3 @@
+"use client";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+export default function Reveal({children,delay=0,className=""}:{children:ReactNode;delay?:number;className?:string}){const ref=useRef<HTMLDivElement>(null);const [on,setOn]=useState(false);useEffect(()=>{const n=ref.current;if(!n)return;const o=new IntersectionObserver(([e])=>{if(e.isIntersecting){setOn(true);o.disconnect()}},{threshold:.08});o.observe(n);return()=>o.disconnect()},[]);return <div ref={ref} className={`${on?"reveal-on":"reveal-off"} ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>}
