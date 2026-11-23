@@ -24,14 +24,16 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Minhajul Yusri Khairi — AI Evaluator & Data Analyst",
+  title: "Minhajul Yusri Khairi — Data Analyst & Data Scientist",
   description:
-    "Portfolio Minhajul Yusri Khairi: NLP & ABSA, AI Evaluation & Metrics, Data Pipeline & EDA. Lulusan Sistem Informasi Universitas Hasanuddin.",
-  metadataBase: new URL("https://khairi-portfolio.vercel.app"),
+    "Portfolio of Minhajul Yusri Khairi: Data Analyst & Data Scientist focused on banking and credit card analytics, churn modeling, and NLP. Information Systems graduate of Universitas Hasanuddin.",
+  metadataBase: new URL("https://minhajul-portofolio.vercel.app"),
   openGraph: {
-    title: "Minhajul Yusri Khairi — AI Evaluator & Data Analyst",
+    title: "Minhajul Yusri Khairi — Data Analyst & Data Scientist",
     description:
-      "NLP & ABSA · AI Evaluation & Metrics · Data Pipeline & EDA",
+      "Banking & Credit Card Analytics · Churn & Spend Modeling · NLP",
+    url: "https://minhajul-portofolio.vercel.app",
+    locale: "en_US",
     type: "website",
   },
 };
@@ -42,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
       <body className="font-body antialiased">{children}</body>
     </html>
   );

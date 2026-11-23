@@ -12,8 +12,59 @@ import {
 const PROJECTS: Project[] = [
   {
     index: "01",
+    kind: "Personal Project",
+    period: "Nov 2026",
+    title: "Profit-Driven Bank Customer Churn & CASA Retention",
+    short:
+      "Ranks customers by Expected Net Value instead of churn probability, so retention budget goes to customers worth keeping.",
+    description:
+      "A calibrated LightGBM churn model combined with a per-customer Expected Net Value (churn probability × save rate × revenue − promo cost). Built on a public Kaggle dataset and evaluated in a profit simulation on 2,000 held-out customers.",
+    metrics: [
+      { value: "0.725", label: "PR-AUC (test)" },
+      { value: "+47.5%", label: "simulated net profit vs 0.50 threshold" },
+      { value: "20/20", label: "cost & save-rate scenarios won" },
+    ],
+    stack: ["LightGBM", "SHAP", "Expected Net Value", "Python"],
+    highlights: [
+      "Showed that a flat 0.50 probability threshold spends 23% of its promos on zero-balance accounts.",
+      "Tested three business hypotheses in EDA: balance vs churn, the product-count U-curve, and age × activity.",
+      "Compared Logistic Regression, Random Forest, and LightGBM with 5-fold CV and checked calibration (test Brier 0.098).",
+      "Explained drivers with SHAP and stress-tested the profit result across 20 assumption scenarios. Profit figures are simulation-based.",
+    ],
+    image: "/projects/churn.png",
+    link: "https://github.com/MinhajulKhairi/bank-churn-casa-retention",
+  },
+
+  {
+    index: "02",
+    kind: "Personal Project",
+    period: "Nov 2026",
+    title: "Credit Card SV Decline — Merchant-Level Root Cause & Risk Model",
+    short:
+      "Explains why credit card spending volume fell 0.8% YoY and flags customers at risk of spending less.",
+    description:
+      "A root-cause analysis on the IBM TabFormer synthetic credit card dataset: LMDI decomposition of the SV decline into active customers, frequency, and ticket size down to MCC level, bootstrap significance testing, and a LightGBM early-warning model.",
+    metrics: [
+      { value: "−13.9%", label: "Airlines YoY (only significant group)" },
+      { value: "0.807", label: "ROC-AUC (risk model)" },
+      { value: "4.6×", label: "top-decile risk lift" },
+    ],
+    stack: ["LMDI", "Bootstrap CI", "LightGBM", "SHAP"],
+    highlights: [
+      "Traced the H2 2019 decline to Travel & Entertainment (−154.2K) while all other categories grew +25.6K.",
+      "Found that 232 of 482 customers account for 80% of the T&E decline.",
+      "Used bootstrap confidence intervals with a control year to separate real declines from noise.",
+      "Built a time-split LightGBM model (ROC-AUC 0.807, PR-AUC 0.470). Predictive, not causal, and run on synthetic data.",
+    ],
+    image: "/projects/sv-decline.png",
+    // TODO: ganti dengan URL repo project SV setelah repo dibuat public
+    link: "https://github.com/MinhajulKhairi",
+  },
+
+  {
+    index: "03",
     kind: "Lead Researcher",
-    period: "Okt 2025 — Jan 2026",
+    period: "Oct 2025 — Jan 2026",
     title: "Dashboard ABSA — Campus Service Sentiment Analysis",
     short:
       "An NLP framework built on fine-tuned IndoBERT to classify sentiment across four aspects of campus service.",
@@ -35,7 +86,7 @@ const PROJECTS: Project[] = [
   },
 
   {
-    index: "02",
+    index: "04",
     kind: "AI Trainer",
     period: "Nov 2024",
     title: "Classify — Smart Attendance System",
@@ -65,9 +116,9 @@ const PROJECTS: Project[] = [
   },
 
   {
-    index: "03",
+    index: "05",
     kind: "Dataset Curator",
-    period: "Des 2024",
+    period: "Dec 2024",
     title: "Al-Bayyan — Alignment Between Fatwa and Religious Teachings",
     short:
       "An NLP system for semantic relevance matching across fatwa texts, the Qur'an, and Hadith using IndoBERT and LSTM.",
@@ -94,7 +145,7 @@ const PROJECTS: Project[] = [
   },
 
   {
-    index: "04",
+    index: "06",
     kind: "Full-stack Developer",
     period: "Jun 2024",
     title: "Car Rental — Rental Management Platform",
@@ -124,7 +175,7 @@ const PROJECTS: Project[] = [
   },
 
   {
-    index: "05",
+    index: "07",
     kind: "Full-stack Developer",
     period: "May 2024",
     title: "EpicBooks — Book Service Application",
@@ -153,7 +204,7 @@ const PROJECTS: Project[] = [
   },
 
   {
-    index: "06",
+    index: "08",
     kind: "Machine Learning Developer",
     period: "2024",
     title: "SweetLife — Diabetes Prediction System",
@@ -209,20 +260,17 @@ const CERTIFICATIONS: Certificate[] = [
 const SKILLS = [
   "Python",
   "SQL",
-  "NLP",
-  "Machine Learning",
-  "AI Evaluation",
-  "Sentiment Analysis",
-  "Data Preprocessing",
-  "PostgreSQL",
-  "Streamlit",
+  "Excel (Power Query)",
   "Power BI",
   "Tableau",
-  "Google Workspace",
+  "Streamlit",
+  "Machine Learning",
+  "Data Reconciliation",
+  "NLP",
+  "LLM Evaluation",
   "Google Colab",
+  "Google Workspace",
   "GitHub",
-  "Notion",
-  "Feishu / Lark",
 ];
 
 const COURSEWORK = [
@@ -361,9 +409,9 @@ export default function Home() {
             <div className="mt-8 text-xl font-mono text-cyan-300 sm:text-2xl">
               <Typewriter
                 words={[
-                  "AI Evaluator & Data Analyst",
-                  "NLP Researcher — ABSA",
-                  "Data Pipeline & EDA",
+                  "Data Analyst & Data Scientist",
+                  "Credit Card & Banking Analytics",
+                  "Churn & Spend Modeling",
                 ]}
               />
             </div>
@@ -371,7 +419,7 @@ export default function Home() {
 
           <Reveal delay={220}>
             <p className="mt-6 max-w-2xl text-lg leading-8 font-bold text-white/65 sm:text-xl">
-              Build something useful with data.
+              Turning banking and credit card data into decisions.
             </p>
           </Reveal>
 
@@ -420,31 +468,86 @@ export default function Home() {
           <Reveal delay={80}>
             <div>
               <h2 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-                Building at the intersection of{" "}
+                Turning data{" "}
                 <span className="text-white/30">
-                  AI, data, and evaluation.
+                  into decisions.
                 </span>
               </h2>
 
               <p className="mt-7 max-w-2xl text-lg leading-8 text-white/70 sm:text-xl">
-                Passionate about turning data into decisions that matter, 
-                at the intersection of AI/ML and business insight. Information Systems graduate from Universitas Hasanuddin, 
-                with academic research applying a synthetic-to-real transfer learning approach on IndoBERT for aspect-based sentiment analysis, 
-                and currently working as an AI Evaluation & Annotation contractor at T-Maxx International, 
-                benchmarking LLM outputs against strict SOPs. 
-                Now focused on applying that same analytical thinking to data analytics, 
-                and looking for a Data Analyst role where I can turn raw data into insights that drive business decisions.
+                Information Systems graduate from Universitas Hasanuddin (GPA 3.90/4.00). I am an Assistant Data Analytics Intern in Card Product Management at Bank Rakyat Indonesia, working on large-scale credit card reconciliation, KPI dashboards, and co-branded portfolio analysis. I build end-to-end analytics and ML projects, from churn modeling to root-cause analysis, and my thesis applied IndoBERT to aspect-based sentiment analysis. Open to full-time Data Analyst and Data Scientist roles.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
+      {/* PROJECTS */}
+      <section
+        id="projects"
+        className="relative overflow-hidden border-t border-white/10 px-5 py-32 sm:px-8"
+        >
+        <div className="mx-auto max-w-7xl">
+
+            <Reveal>
+            <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+                <div>
+                <Eyebrow n="02" label="Projects" />
+
+                <h2 className="mt-6 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl">
+                    A closer look
+                    <br />
+                    <span className="text-white/25">
+                    at the work.
+                    </span>
+                </h2>
+                </div>
+
+                <div className="max-w-md">
+                <p className="text-lg leading-8 text-white/60">
+                    Banking analytics and machine learning projects, from
+                    churn economics and spend root-cause analysis to NLP.
+                </p>
+                </div>
+            </div>
+            </Reveal>
+
+            {/* PROJECT LIST */}
+            <div className="mt-16">
+            {PROJECTS.map((project, index) => (
+                <Reveal
+                key={project.title}
+                delay={index * 120}
+                >
+                <ProjectCard
+                    project={project}
+                    reverse={index % 2 === 1}
+                />
+                </Reveal>
+            ))}
+            </div>
+
+            {/* PROJECT FOOTER */}
+            <Reveal delay={250}>
+            <div className="mt-10 border-t border-white/10 pt-8">
+                <div className="flex flex-col justify-between gap-4 text-sm font-mono uppercase tracking-[0.15em] text-white/30 sm:flex-row">
+                <span>Selected work · 2024 — 2026</span>
+
+                <span>
+                    Data Analytics · Churn Modelling · Root-Cause Analysis · NLP
+                </span>
+                </div>
+            </div>
+            </Reveal>
+
+        </div>
+      </section>
+
       {/* EXPERIENCE */}
-      <section id="experience" className="px-5 py-28 sm:px-8">
+      <section id="experience" className="border-t border-white/10 px-5 py-28 sm:px-8">
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <Eyebrow n="02" label="Work Experience" />
+            <Eyebrow n="03" label="Work Experience" />
 
             <h2 className="mt-4 text-4xl font-semibold tracking-tight sm:text-6xl">
               Experience
@@ -454,9 +557,26 @@ export default function Home() {
           <div className="mt-14 border-t border-white/10">
             {[
               {
+                role: "Assistant Data Analytics Intern — Card Product Management",
+                org: "Bank Rakyat Indonesia (Persero) Tbk",
+                period: "Sep 2026 — Present",
+                tags: [
+                  "Data Reconciliation",
+                  "Excel Power Query",
+                  "KPI Dashboard",
+                  "Credit Card Analytics",
+                ],
+                bullets: [
+                  "Reconciled 6.5M+ co-branded credit card point deposit records (2022–2026) against partner invoices using Excel Power Query.",
+                  "Cross-matched transaction, card-mapping, and SFTP datasets to find customers missing from partner Welcome Bonus reports.",
+                  "Built an interactive HTML dashboard consolidating CPM team KPIs.",
+                  "Analyzed co-branded portfolio performance vs targets and YoY trends.",
+                ],
+              },
+              {
                 role: "AI Evaluation & Annotation (Contractor)",
                 org: "T-Maxx International — Beijing, China (Remote)",
-                period: "May 2026 — Present",
+                period: "May 2026 — Oct 2026",
                 tags: [
                   "LLM Benchmarking",
                   "DCG Scoring",
@@ -551,7 +671,7 @@ export default function Home() {
       >
         <div className="mx-auto max-w-7xl">
           <Reveal>
-            <Eyebrow n="03" label="Skills" />
+            <Eyebrow n="04" label="Skills" />
 
             <div className="mt-5 grid gap-10 lg:grid-cols-[.7fr_1.3fr]">
               <h2 className="text-4xl font-semibold tracking-tight sm:text-6xl">
@@ -576,67 +696,6 @@ export default function Home() {
               </div>
             </div>
           </Reveal>
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section
-        id="projects"
-        className="relative overflow-hidden px-5 py-32 sm:px-8"
-        >
-        <div className="mx-auto max-w-7xl">
-
-            <Reveal>
-            <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
-                <div>
-                <Eyebrow n="04" label="Projects" />
-
-                <h2 className="mt-6 max-w-4xl text-5xl font-semibold leading-[1.02] tracking-tight sm:text-7xl">
-                    A closer look
-                    <br />
-                    <span className="text-white/25">
-                    at the work.
-                    </span>
-                </h2>
-                </div>
-
-                <div className="max-w-md">
-                <p className="text-lg leading-8 text-white/60">
-                    A selection of work across NLP, AI evaluation, data
-                    preprocessing, and analytical systems.
-                </p>
-                </div>
-            </div>
-            </Reveal>
-
-            {/* PROJECT LIST */}
-            <div className="mt-16">
-            {PROJECTS.map((project, index) => (
-                <Reveal
-                key={project.title}
-                delay={index * 120}
-                >
-                <ProjectCard
-                    project={project}
-                    reverse={index % 2 === 1}
-                />
-                </Reveal>
-            ))}
-            </div>
-
-            {/* PROJECT FOOTER */}
-            <Reveal delay={250}>
-            <div className="mt-10 border-t border-white/10 pt-8">
-                <div className="flex flex-col justify-between gap-4 text-sm font-mono uppercase tracking-[0.15em] text-white/30 sm:flex-row">
-                <span>Selected work · 2024 — 2026</span>
-
-                <span>
-                    Research · NLP · Data · AI Evaluation
-                </span>
-                </div>
-            </div>
-            </Reveal>
-
         </div>
       </section>
 
@@ -851,7 +910,7 @@ export default function Home() {
             </h2>
 
             <p className="mt-7 max-w-xl text-lg leading-8 text-white/65 sm:text-xl">
-              Open to opportunities in Data Science, Analytics, and AI Evaluation.
+              Open to opportunities in Data Analyst & Data Scientist.
             </p>
           </Reveal>
 
