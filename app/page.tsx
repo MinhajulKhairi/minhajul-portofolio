@@ -962,7 +962,7 @@ export default function Home() {
           </Reveal>
 
           <div className="mt-10 flex flex-col justify-between gap-3 text-xs font-mono uppercase tracking-widest text-white/25 sm:flex-row">
-            <span>Jakarta, Indonesia · (+62) 822 9696 5023</span>
+            <span>Jakarta, Indonesia</span>
 
             <span>
               © {new Date().getFullYear()} Minhajul Yusri Khairi · Next.js
